@@ -66,16 +66,13 @@ Customized the generated SAP Fiori Elements application through behavior project
 ## Application Screenshots
 
 ### Flight List Report
-![Flight List](docs/01_flight_list_report.png)
+![Flight List](docs/01_01_flight_list.jpg)
 
 ### Flight Object Page
-![Object Page](docs/02_flight_object_page.png)
+![Object Page](docs/02_object_page.jpg)
 
 ### Flight Price Validation
-![Price Validation](docs/03_flight_price_validation.png)
-
-### After UI Adjustment
-![UI Adjustment](docs/04_after_UI_adj.png)
+![Price Validation](docs/03_price_validation.jpg)
 
 ## Repository
 
