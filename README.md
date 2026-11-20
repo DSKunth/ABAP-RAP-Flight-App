@@ -83,6 +83,6 @@ Before using this application, ensure that the following are available in your A
 - **SAP Training Demo Objects:** Required SAP training repository objects used as references during development.
 - **Flight Data:** The application uses its own database table (`Z3964FLIGHTS`), populated with sample flight records.
 - **Currency Value Help:** Uses the standard CDS view `I_CurrencyStdVH` to provide currency selection.
-- **Message Class:** Uses `/LRN/S4D400`to show an error message
+- **Message Class:** Uses `/LRN/S4D400`to show an error message.
 
 **Note:** This repository contains custom development objects. It does not include the underlying SAP standard training objects or the ABAP Cloud environment. These dependencies must be available separately.
