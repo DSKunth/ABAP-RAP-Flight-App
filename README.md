@@ -1,53 +1,83 @@
-# ABAP RAP Flight App
+# ABAP RAP – Flight Management Application
 
-An SAP ABAP RESTful Application Programming Model (RAP) Flight application developed as part of my learning journey **Acquiring Core ABAP Skills**, following the SAP course **S4D400 Basic ABAP Programming**.
+A flight management application developed using the **ABAP RESTful Application Programming Model (RAP)** and exposed through an OData V4 UI service.
 
-This project demonstrates the development of a RAP-based application using CDS view entities, behavior definitions, business services, and SAP Fiori elements.
+The application provides a Fiori-based interface for viewing and maintaining flight information, with custom business logic to validate flight prices and control user interactions.
 
-## Application Development
-The application is developed incrementally through Exercises 18–21 of the SAP S4D400 course.
+## Project Overview
 
-| Exercise | Topic | Class | Status |
-|---|---|---|---|
-| 18 | Copy a Database Table | `ZCL_3964_COPY` | Completed |
-| 19 | Generate and Preview an OData UI Service | – | Completed |
-| 20 | Validate the Flight Price | – | Pending |
-| 21 | Adjust the User Interface | – | Pending |
+| Attribute | Details |
+|---|---|
+| Project | ABAP RAP Flight Management Application |
+| ABAP Package | `ZS4D400_3964_FLIGHT` |
+| Database Table | `Z3964FLIGHTS` |
+| Root CDS View Entity | `ZR_3964FLIGHTS` |
+| Projection CDS View | `ZC_3964FLIGHTS` |
+| Service Definition | `ZUI_FLIGHTS_04` |
+| Service Binding | `ZUI_FLIGHTS_04` |
+| Protocol | OData V4 – UI |
+| User Interface | SAP Fiori Elements |
 
-### Development Overview
+## Implemented Features & Business Logic
 
-- **Exercise 18 – Database Preparation:** Create a custom flight database table by copying an existing database table.
-- **Exercise 19 – RAP Application Generation:** Generate the RAP business objects, CDS views, behavior definitions, service definition, and OData UI service.
-- **Exercise 20 – Business Logic:** Implement flight price validation.
-- **Exercise 21 – User Interface:** Adjust the application user interface.
+### 1. Flight Data Management
+- Created a dedicated database table based on the SAP flight data template.
+- Populated the database table with sample flight records using an ABAP utility class.
+- Generated the RAP business object and associated repository objects using the ABAP RAP Object Generator.
 
-## Technical Components
+### 2. RAP Business Object & OData Service
+- Implemented a RAP business object using CDS view entities and behavior definitions.
+- Created a root CDS view entity and a projection view to separate the business object data model from its service representation.
+- Configured a draft-enabled business object.
+- Exposed the business object through an OData V4 UI service using a service definition and service binding.
 
-- ABAP RESTful Application Programming Model (RAP)
-- ABAP CDS View Entities
-- Behavior Definitions and Implementations
-- Access Controls (DCL)
-- Metadata Extensions
-- OData V4 - UI Service Binding
-- SAP Fiori Elements
-- Eclipse with ABAP Development Tools (ADT)
-- abapGit
+### 3. Business Logic – Flight Price Validation
+Implemented a custom validation (`validatePrice`) in the RAP behavior implementation to enforce a positive flight price.
 
-## Package Structure
+- Checks whether the flight price is greater than zero.
+- Rejects changes when the price is zero or negative.
+- Uses Entity Manipulation Language (EML) to read the transactional data.
+- Populates the `FAILED` and `REPORTED` response structures to reject invalid records and return an error message to the user.
 
-SAP package: `ZS4D400_3964_RAP`
+### 4. User Interface & Behavior Customization
+Customized the generated SAP Fiori Elements application through behavior projections and CDS metadata extensions.
 
-The package contains the generated development objects for the RAP Flight application, including CDS entities, behavior definitions, service definitions, service bindings, database tables, and behavior implementation classes.
+- Restricted the service interface to exclude the Create and Delete operations.
+- Set the Plane Type field to read-only in the service projection.
+- Hid technical and administrative fields, including creation and change timestamps and user information.
+- Limited the selection fields on the list report to Carrier ID and Connection ID.
+- Adjusted the field sequence on the Object Page for better readability.
 
-## Development Environment
+## Technologies & Concepts
 
-- SAP BTP ABAP Environment (ABAP Cloud)
-- Eclipse IDE with ABAP Development Tools (ADT)
-- abapGit
-- GitHub
+| Technology | Application |
+|---|---|
+| ABAP Cloud | Development environment |
+| ABAP RESTful Application Programming Model (RAP) | Business object implementation |
+| Core Data Services (CDS) | Data modeling and service projections |
+| ABAP Behavior Definitions | Business object behavior configuration |
+| ABAP Behavior Implementation | Custom validation logic |
+| Entity Manipulation Language (EML) | Transactional data access |
+| OData V4 | Service exposure |
+| SAP Fiori Elements | User interface |
+| CDS Annotations | UI metadata and value help configuration |
+| Eclipse ADT | ABAP development environment |
 
-## About This Project
+## Application Screenshots
 
-This repository contains the RAP Flight application developed during my SAP ABAP learning journey.
+### Flight List Report
+<!-- Add screenshot of the flight list here -->
 
-The application is built incrementally, with each exercise introducing additional RAP functionality and application capabilities.
+### Flight Object Page
+<!-- Add screenshot of the flight details here -->
+
+### Flight Price Validation
+<!-- Add screenshot showing the validation error -->
+
+## Repository
+
+This repository contains the ABAP development objects for the Flight Management Application.
+
+**Development package:** `ZS4D400_3964_FLIGHT`
+
+**GitHub:** https://github.com/DSKunth/ABAP-RAP-Flight-App
