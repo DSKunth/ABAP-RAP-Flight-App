@@ -75,7 +75,7 @@ Customized the generated SAP Fiori Elements application through behavior project
 ![Price Validation](docs/03_flight_price_validation.png)
 
 ### After UI Adjustment
-![UI Adjustment](04_after_UI_adj.png)
+![UI Adjustment](docs/04_after_UI_adj.png)
 
 ## Repository
 
