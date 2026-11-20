@@ -4,10 +4,43 @@ CLASS LHC_ZR_3964FLIGHTS DEFINITION INHERITING FROM CL_ABAP_BEHAVIOR_HANDLER.
       GET_GLOBAL_AUTHORIZATIONS FOR GLOBAL AUTHORIZATION
         IMPORTING
            REQUEST requested_authorizations FOR FLIGHTS
-        RESULT result.
+        RESULT result,
+      validatePrice FOR VALIDATE ON SAVE
+            keys FOR FLIGHTS~validatePrice.
 ENDCLASS.
 
 CLASS LHC_ZR_3964FLIGHTS IMPLEMENTATION.
   METHOD GET_GLOBAL_AUTHORIZATIONS.
   ENDMETHOD.
+  METHOD validatePrice.
+
+    DATA failed_record   LIKE LINE OF failed-flights.
+    DATA reported_record LIKE LINE OF reported-flights.
+
+    READ ENTITIES OF ZR_3964Flights IN LOCAL MODE
+    ENTITY Flights
+      FIELDS ( Price )
+      WITH CORRESPONDING #(  keys )
+      RESULT DATA(flights).
+
+    LOOP AT flights INTO DATA(flight).
+
+      IF flight-price <= 0.
+
+        failed_record-%tky = flight-%tky.
+        APPEND failed_record TO failed-flights.
+
+        reported_record-%tky = flight-%tky.
+        reported_record-%msg = new_message(
+                            id       = '/LRN/S4D400'
+                            number   = '101'
+                            severity = ms-error ).
+        APPEND reported_record TO reported-flights.
+
+      ENDIF.
+
+    ENDLOOP.
+
+  ENDMETHOD.
+
 ENDCLASS.
