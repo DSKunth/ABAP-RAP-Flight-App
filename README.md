@@ -74,10 +74,15 @@ Customized the generated SAP Fiori Elements application through behavior project
 ### Flight Price Validation
 ![Price Validation](docs/03_price_validation.jpg)
 
-## Repository
+## Prerequisites & Dependencies
 
-This repository contains the ABAP development objects for the Flight Management Application.
+This project was developed in an SAP ABAP Cloud training environment and relies on standard SAP training objects and demo content.
 
-**Development package:** `ZS4D400_3964_FLIGHT`
+Before using this application, ensure that the following are available in your ABAP environment:
 
-**GitHub:** https://github.com/DSKunth/ABAP-RAP-Flight-App
+- **SAP Training Demo Objects:** Required SAP training repository objects used as references during development.
+- **Flight Data:** The application uses its own database table (`Z3964FLIGHTS`), populated with sample flight records.
+- **Currency Value Help:** Uses the standard CDS view `I_CurrencyStdVH` to provide currency selection.
+- **Message Class:** Uses `/LRN/S4D400`to show an error message
+
+**Note:** This repository contains custom development objects. It does not include the underlying SAP standard training objects or the ABAP Cloud environment. These dependencies must be available separately.
